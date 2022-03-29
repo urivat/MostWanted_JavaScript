@@ -65,8 +65,7 @@ function mainMenu(person, people) {
         case "info":
             //! TODO: Declare a findPersonInfo function //////////////////////////////////////////
             // HINT: Look for a person-object stringifier utility function to help
-            let personInfo = findPersonInfo(person[0]);
-            alert(personInfo);
+            displayPerson(person[0], people);
             break;
         case "family":
             //! TODO: Declare a findPersonFamily function //////////////////////////////////////////
@@ -136,9 +135,19 @@ function displayPeople(people) {
  * in order to easily send the information to the user in the form of an alert().
  * @param {Object} person       A singular object.
  */
-function displayPerson(person) {
+function displayPerson(person, people) {
     let personInfo = `First Name: ${person.firstName}\n`;
     personInfo += `Last Name: ${person.lastName}\n`;
+    personInfo += `Gender: ${person.gender}\n`;
+    personInfo += `dob: ${person.dob}\n`;
+    personInfo += `Height: ${person.height}\n`;
+    personInfo += `Weight: ${person.weight}\n`;
+    personInfo += `Eyecolor: ${person.eyeColor}\n`;
+    personInfo += `Occupation: ${person.occupation}\n`;
+    personInfo += `parents: ${displayParent()}\n`;
+    personInfo += `currentspouse: ${displayParent()}\n`
+    
+
     //! TODO: finish getting the rest of the information to display //////////////////////////////////////////
     alert(personInfo);
 }
@@ -202,5 +211,34 @@ function searchByTrait(people){
         });
     return foundObject
 }
+/**function findPersonInfo(people){
+    let foundPerson = people.filter(function(objectEl){
+        return foundPerson
+    }).map(){
+        
+        
+    }
+}
+/**function displayParent(people){
+    let parents = people.filter(function(parent){
+        people
+        }).map(function (addParent) {
+            return `${addParent.parents} ${addParent.parents}`;
+        }).join("\n");
+    return parents
+    }*/
+function displayParent(people)
+        let foundP = people.map(function (person){
+            return `${person.parents} ${person.parents}`;
+        })
+        .join("\n")
+          
 
+
+
+
+
+
+
+    
     
