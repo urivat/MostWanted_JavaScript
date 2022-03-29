@@ -183,3 +183,15 @@ function chars(input) {
 
 //////////////////////////////////////////* End Of Starter Code *//////////////////////////////////////////
 // Any additional functions can be written below this line 👇. Happy Coding! 😁
+function searchByTrait(people){
+    let userSelectedProp = prompt('which attribute: eyeColor, height, weight, eyeColor,occupation "parents": [629807187, 464142841],  ');
+    let userSelectedValue = prompt('What is the value of the attribute?')
+    let foundObject = people.filter(function(traits){
+        if(traits[userSelectedProp].includes(parseInt(userSelectedValue))){
+            return true
+        }
+    })
+    return foundObject
+}
+
+    
