@@ -1,3 +1,10 @@
+/* 
+    |   Author: devCodeCamp
+    |   Description: Most Wanted Starter Code
+*/
+
+"use strict";
+
 // You may modify this for testing purposes.
 const data = [
 	{
