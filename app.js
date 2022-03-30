@@ -66,11 +66,12 @@ function mainMenu(person, people) {
             //! TODO: Declare a findPersonInfo function //////////////////////////////////////////
             // HINT: Look for a person-object stringifier utility function to help
             displayPerson(person[0], people);
+            
             break;
         case "family":
             //! TODO: Declare a findPersonFamily function //////////////////////////////////////////
             // HINT: Look for a people-collection stringifier utility function to help
-            let personFamily = findPersonFamily(person[0], people);
+            let personFamily = displayFamily(person[0], people);
             alert(personFamily);
             break;
         case "descendants":
@@ -143,10 +144,8 @@ function displayPerson(person, people) {
     personInfo += `Height: ${person.height}\n`;
     personInfo += `Weight: ${person.weight}\n`;
     personInfo += `Eyecolor: ${person.eyeColor}\n`;
-    personInfo += `Occupation: ${person.occupation}\n`;
-    personInfo += `parents: ${displayParent()}\n`;
-    personInfo += `currentspouse: ${displayParent()}\n`
-    
+    personInfo += `Occupation: ${person.occupation}\n`
+
 
     //! TODO: finish getting the rest of the information to display //////////////////////////////////////////
     alert(personInfo);
@@ -211,28 +210,10 @@ function searchByTrait(people){
         });
     return foundObject
 }
-/**function findPersonInfo(people){
-    let foundPerson = people.filter(function(objectEl){
-        return foundPerson
-    }).map(){
-        
-        
-    }
-}
-/**function displayParent(people){
-    let parents = people.filter(function(parent){
-        people
-        }).map(function (addParent) {
-            return `${addParent.parents} ${addParent.parents}`;
-        }).join("\n");
-    return parents
-    }*/
-function displayParent(people)
-        let foundP = people.map(function (person){
-            return `${person.parents} ${person.parents}`;
-        })
-        .join("\n")
-          
+function displayFamily(person, people)
+    let personFamilyMem = `parents ${person.parents}\n`;
+    personFamilyMem += `spouse ${person.currentSpouse}`
+
 
 
 
