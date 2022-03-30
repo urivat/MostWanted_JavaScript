@@ -210,10 +210,16 @@ function searchByTrait(people){
         });
     return foundObject
 }
-function displayFamily(person, people)
-    let personFamilyMem = `parents ${person.parents}\n`;
-    personFamilyMem += `spouse ${person.currentSpouse}`
 
+
+
+
+
+
+function displayFamily(person, people){
+    let personFamilyMem = `parents ${person.parents[0]} ${person.parents[1]}\n`;
+    personFamilyMem += `spouse ${person.currentSpouse}`
+}
 
 
 
