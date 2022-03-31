@@ -224,22 +224,15 @@ function displayFamily(person, people) {
     alert(`${firstParent}\n ${secondParent}\n`)
   }if(spouseFind == 0){
     alert(`This person has no spouse.`)
-  }else{
-    let currentSpouse = `Current spouse: ${spouseFind.firstName} ${spouseFind.lastName}`;
+  }else if(spouseFind.length === 1){
+    let currentSpouse = `Current spouse: ${spouseFind[0].firstName} ${spouseFind[0].lastName}`;
     alert(`${currentSpouse}\n`)
   }
-  
-  //let personFound = findSpouse
-  //let familyFinder = `spouse ${person.firstName}`
-
-  //let foundSpouse =  `spouse ${spouseFinder[0].firstName} ${spouseFinder[0].lastName}\n\n` ;
-  //foundSpouse+= `parents:\n `
-  alert(familyFinder);
 }
 
 function findSpouse(person, people) {
   let foundSpouse = people.filter(function (personEl) {
-    if (person.currentSpouse === personEl.id) return true;
+    if (person.currentSpouse=== personEl.id) return true;
   });
   return foundSpouse;
 }
