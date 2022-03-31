@@ -216,7 +216,7 @@ function searchByTrait(people) {
 function displayFamily(person, people) {
   let parentfinder = findParents(person[0], people);
   let spouseFind = findSpouse(person[0], people);
-  let siblingsFind = findDescendants(person[0],people)
+  let siblingsFind = findSiblings(person[0],people)
   if(parentfinder.length == 0){
     alert(`This person has no parents`)
   }
@@ -237,14 +237,14 @@ function displayFamily(person, people) {
     let currentSpouse = `Current spouse: ${spouseFind[0].firstName} ${spouseFind[0].lastName}`;
     alert(`${currentSpouse}\n`)
   }
-  if (descendantFind.length == 0){
-    alert(`This person does not have any descendants`)
+  if (siblingsFind.length == 0){
+    alert(`This person does not have any siblings`)
 
   }else if(siblingsFind.length >= 1){
 
-    let childOne = `First child is ${descendantFind[0].firstName} ${descendantFind[0].lastName}`;
+    let childOne = `First child is ${siblingsFind[0].firstName} ${siblingsFind[0].lastName}`;
 
-    let childTwo = `Second child is ${descendantFind[1].firstName} ${descendantFind[1].lastName}`;
+    let childTwo = `Second child is ${siblingsFind[1].firstName} ${siblingsFind[1].lastName}`;
 
 
     alert(`${childOne} ${childTwo}`)
@@ -285,8 +285,10 @@ function findSiblings(person, people) {
 
 
   let foundSiblings = people.filter(function (personEl) {
-    if (person.parents.includes(personEl.parents)) {
-
+    if (person.parents === personEl.parents) {
+        if(person == person){
+          return true
+        }
 
       return true
     
@@ -312,5 +314,5 @@ function findDescendants(person, people) {
     }
     
   });
-  return foundSiblings;
+  return founddescendents;
 }
