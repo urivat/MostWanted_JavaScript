@@ -72,7 +72,7 @@ function mainMenu(person, people) {
     case "family":
       //! TODO: Declare a findPersonFamily function //////////////////////////////////////////
       // HINT: Look for a people-collection stringifier utility function to help
-      //displayFamily(person[0],people)
+      
       displayFamily(person, people);
 
       break;
@@ -216,29 +216,58 @@ function searchByTrait(people) {
 function displayFamily(person, people) {
   let parentfinder = findParents(person[0], people);
   let spouseFind = findSpouse(person[0], people);
+  let siblingsFind = findDescendants(person[0],people)
   if(parentfinder.length == 0){
     alert(`This person has no parents`)
-  }else if(parentfinder.length == 2){
+  }
+  
+  else if(parentfinder.length == 2){
     let firstParent = `First parent: ${parentfinder[0].firstName} ${parentfinder[0].lastName}`;
     let secondParent = `Second parent: ${parentfinder[1].firstName} ${parentfinder[1].lastName}`;
     alert(`${firstParent}\n ${secondParent}\n`)
-  }if(spouseFind == 0){
+  }
+  
+  if(spouseFind == 0){
+
     alert(`This person has no spouse.`)
-  }else if(spouseFind.length === 1){
+  }
+  
+  else if(spouseFind.length === 1){
+
     let currentSpouse = `Current spouse: ${spouseFind[0].firstName} ${spouseFind[0].lastName}`;
     alert(`${currentSpouse}\n`)
   }
+  if (descendantFind.length == 0){
+    alert(`This person does not have any descendants`)
+
+  }else if(siblingsFind.length >= 1){
+
+    let childOne = `First child is ${descendantFind[0].firstName} ${descendantFind[0].lastName}`;
+
+    let childTwo = `Second child is ${descendantFind[1].firstName} ${descendantFind[1].lastName}`;
+
+
+    alert(`${childOne} ${childTwo}`)
+  }
+
 }
 
 function findSpouse(person, people) {
   let foundSpouse = people.filter(function (personEl) {
+
+
     if (person.currentSpouse=== personEl.id) return true;
   });
+
+
   return foundSpouse;
 }
 
 function findParents(person, people) {
   let foundParents = people.filter(function (personEl) {
+
+
+
     if (person.parents.includes(personEl.id)) {
       return true
     
@@ -247,5 +276,41 @@ function findParents(person, people) {
     }
     
   });
+
+
   return foundParents;
+}
+function findSiblings(person, people) {
+
+
+
+  let foundSiblings = people.filter(function (personEl) {
+    if (person.parents.includes(personEl.parents)) {
+
+
+      return true
+    
+    }else{
+      return false
+    }
+    
+  });
+  return foundSiblings;
+}
+function findDescendants(person, people) {
+
+
+
+  let founddescendents = people.filter(function (personEl) {
+    if (person.id.includes(personEl.parents)) {
+
+
+      return true
+    
+    }else{
+      return false
+    }
+    
+  });
+  return foundSiblings;
 }
