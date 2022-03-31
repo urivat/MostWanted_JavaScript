@@ -65,18 +65,16 @@ function mainMenu(person, people) {
     case "info":
       //! TODO: Declare a findPersonInfo function //////////////////////////////////////////
       // HINT: Look for a person-object stringifier utility function to help
-      
+
       displayPerson(person[0], people);
 
       break;
     case "family":
       //! TODO: Declare a findPersonFamily function //////////////////////////////////////////
-      // HINT: Look for a people-collection stringifier utility function to help  
+      // HINT: Look for a people-collection stringifier utility function to help
       //displayFamily(person[0],people)
-      displayFamily(person, people)
+      displayFamily(person, people);
 
-     
-      
       break;
     case "descendants":
       //! TODO: Declare a findPersonDescendants function //////////////////////////////////////////
@@ -216,41 +214,45 @@ function searchByTrait(people) {
 }
 
 function displayFamily(person, people) {
-  let parentfinder = findParents(person, people);
-  let firstParent = `First parent: ${parentfinder[0].firstName} ${parentfinder[0].lastName}`;
-  let secondParent = `Second parent: ${parentfinder[1].firstName} ${parentfinder[1].lastName}`;
-  let spouseFind =findSpouse(person,people);
-  let currentSpouse = `Current spouse: ${spouseFind[0].firstName} ${spouseFind[0].lastName}`;
-  alert(`${firstParent}\n ${secondParent}\n ${currentSpouse}\n`)
+  let parentfinder = findParents(person[0], people);
+  let spouseFind = findSpouse(person[0], people);
+  if(parentfinder.length == 0){
+    alert(`This person has no parents`)
+  }else if(parentfinder.length == 2){
+    let firstParent = `First parent: ${parentfinder[0].firstName} ${parentfinder[0].lastName}`;
+    let secondParent = `Second parent: ${parentfinder[1].firstName} ${parentfinder[1].lastName}`;
+    alert(`${firstParent}\n ${secondParent}\n`)
+  }if(spouseFind == 0){
+    alert(`This person has no spouse.`)
+  }else{
+    let currentSpouse = `Current spouse: ${spouseFind.firstName} ${spouseFind.lastName}`;
+    alert(`${currentSpouse}\n`)
+  }
+  
   //let personFound = findSpouse
   //let familyFinder = `spouse ${person.firstName}`
 
-  
   //let foundSpouse =  `spouse ${spouseFinder[0].firstName} ${spouseFinder[0].lastName}\n\n` ;
   //foundSpouse+= `parents:\n `
-  alert(familyFinder)
+  alert(familyFinder);
 }
 
-function findSpouse(person, people){
-  let currentSpouse = person;
-  let foundSpouse = people.filter(function(person) {
-    if (person[0].id === currentSpouse[0].currentSpouse) return true;
+function findSpouse(person, people) {
+  let foundSpouse = people.filter(function (personEl) {
+    if (person.currentSpouse === personEl.id) return true;
   });
   return foundSpouse;
-
 }
 
-
-function findParents(person, people){
-    let parents = person;
-    let foundParents = people.filter(function(personel){
-      if(personel.id === parents.parents[0] || personel.id === parents.parents[1]){
-        return true;
-      }
-      else{
-        return false;
-      }
-    })
-      return foundParents
+function findParents(person, people) {
+  let foundParents = people.filter(function (personEl) {
+    if (person.parents.includes(personEl.id)) {
+      return true
+    
+    }else{
+      return false
+    }
+    
+  });
+  return foundParents;
 }
-
