@@ -65,14 +65,17 @@ function mainMenu(person, people) {
     case "info":
       //! TODO: Declare a findPersonInfo function //////////////////////////////////////////
       // HINT: Look for a person-object stringifier utility function to help
+      
       displayPerson(person[0], people);
 
       break;
     case "family":
       //! TODO: Declare a findPersonFamily function //////////////////////////////////////////
-      // HINT: Look for a people-collection stringifier utility function to help
-      findSpouse(person[0], people);
-      alert(findSpouse);
+      // HINT: Look for a people-collection stringifier utility function to help  
+      displayFamily(person[0],people)
+      
+
+     
       
       break;
     case "descendants":
@@ -193,7 +196,7 @@ function chars(input) {
 // Any additional functions can be written below this line 👇. Happy Coding! 😁
 function searchByTrait(people) {
   let userSelectedProp = prompt(
-    'which attribute: height, weight, eyeColor,occupation "parents": [629807187, 464142841],  '
+    'which attribute: height, weight, eyeColor, occupation "parents": [629807187, 464142841],  '
   );
   let userSelectedValue = prompt("What is the value of the attribute?");
   let foundObject = people.filter(function (traits) {
@@ -213,14 +216,24 @@ function searchByTrait(people) {
 }
 
 function displayFamily(person, people) {
-  let personFamilyMem = `parents ${person.parents[0]} ${person.parents[1]}\n`;
-  personFamilyMem += `spouse ${person.currentSpouse}`;
+  let spouseFinder = findSpouse(person,people);
+  spouseFinder += `${person.firstName} ${person.lastName} Family:\n
+  spouse: ${person.currentSpouse}\n`;
+  
+  alert(spouseFinder)
 }
 function findSpouse(person, people) {
   let spouseId = person.currentSpouse;
   let foundSpouse = people.filter(function (possibleSpouse) {
     if (spouseId === possibleSpouse.id) return true;
-  });
-  return foundSpouse;
+  }).map(function(item){
+      return `${person.firstName} ${person.lastName}`
+  })
+  return foundSpouse ;
   
 }
+function findParents(person, people){
+    let parentId = person.parents;
+    let found
+}
+
