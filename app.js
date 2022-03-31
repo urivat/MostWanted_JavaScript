@@ -72,8 +72,8 @@ function mainMenu(person, people) {
     case "family":
       //! TODO: Declare a findPersonFamily function //////////////////////////////////////////
       // HINT: Look for a people-collection stringifier utility function to help  
-      displayFamily(person[0],people)
-      
+      //displayFamily(person[0],people)
+      displayFamily(person, people)
 
      
       
@@ -216,24 +216,41 @@ function searchByTrait(people) {
 }
 
 function displayFamily(person, people) {
-  let spouseFinder = findSpouse(person,people);
-  spouseFinder += `${person.firstName} ${person.lastName} Family:\n
-  spouse: ${person.currentSpouse}\n`;
+  let parentfinder = findParents(person, people);
+  let firstParent = `First parent: ${parentfinder[0].firstName} ${parentfinder[0].lastName}`;
+  let secondParent = `Second parent: ${parentfinder[1].firstName} ${parentfinder[1].lastName}`;
+  let spouseFind =findSpouse(person,people);
+  let currentSpouse = `Current spouse: ${spouseFind[0].firstName} ${spouseFind[0].lastName}`;
+  alert(`${firstParent}\n ${secondParent}\n ${currentSpouse}\n`)
+  //let personFound = findSpouse
+  //let familyFinder = `spouse ${person.firstName}`
+
   
-  alert(spouseFinder)
+  //let foundSpouse =  `spouse ${spouseFinder[0].firstName} ${spouseFinder[0].lastName}\n\n` ;
+  //foundSpouse+= `parents:\n `
+  alert(familyFinder)
 }
-function findSpouse(person, people) {
-  let spouseId = person.currentSpouse;
-  let foundSpouse = people.filter(function (possibleSpouse) {
-    if (spouseId === possibleSpouse.id) return true;
-  }).map(function(item){
-      return `${person.firstName} ${person.lastName}`
-  })
-  return foundSpouse ;
-  
+
+function findSpouse(person, people){
+  let currentSpouse = person;
+  let foundSpouse = people.filter(function(person) {
+    if (person[0].id === currentSpouse[0].currentSpouse) return true;
+  });
+  return foundSpouse;
+
 }
+
+
 function findParents(person, people){
-    let parentId = person.parents;
-    let found
+    let parents = person;
+    let foundParents = people.filter(function(personel){
+      if(personel.id === parents.parents[0] || personel.id === parents.parents[1]){
+        return true;
+      }
+      else{
+        return false;
+      }
+    })
+      return foundParents
 }
 
