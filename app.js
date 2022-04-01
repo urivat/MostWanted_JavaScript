@@ -194,7 +194,7 @@ function chars(input) {
 // Any additional functions can be written below this line 👇. Happy Coding! 😁
 function searchByTrait(people) {
   let userSelectedProp = prompt(
-    'which attribute: height, weight, eyeColor, occupation "parents": [629807187, 464142841],  '
+    'which attribute would you like to search by: height, weight, eyeColor, occupation, Gender, DOB?  '
   );
   let userSelectedValue = prompt("What is the value of the attribute?");
   let foundObject = people.filter(function (traits) {
@@ -286,9 +286,7 @@ function findSiblings(person, people) {
 
   let foundSiblings = people.filter(function (personEl) {
     if (person.parents === personEl.parents) {
-        if(person == person){
-          return true
-        }
+       
 
       return true
     
